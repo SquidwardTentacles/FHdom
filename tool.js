@@ -181,3 +181,34 @@ function toFixexFunc(string, toStr) {
   }
 }
 Vue.prototype.toFixexFunc = toFixexFunc;
+
+
+// 日期格式化（self）
+// 参数解析  num时间戳 icon年月日分割的字符 backStyle返回的时间格式、
+function FormtDate(num, icon, backStyle) {
+  // console.log(now.getDate());
+  var now = new Date(num);
+  console.log(now);
+
+  var y = now.getFullYear();
+  var m = now.getMonth() + 1;
+  var d = now.getDate();
+  var h = now.getHours();
+  var m = now.getMinutes();
+  var s = now.getSeconds();
+  // console.log(Hors, Min, Sec);
+
+  var conngect = icon ? icon : '-';
+  var backStyleV = backStyle ? backStyle : 'y-m-d';
+
+  var returnDate = '';
+  returnDate = `${y}${conngect}${m}${conngect}${d}`;
+  if (backStyleV === 'y-m-d-h-m') {
+    returnDate += ` ${h}:${m}`;
+  } else if (backStyleV === 'y-m-d-h-m-s') {
+    returnDate += ` ${h}:${m}:${s}`;
+  }
+  return returnDate;
+}
+// var now = new Date();
+console.log(FormtDate('Mar 1, 2019 12:00:00 AM', '-', 'y-m-d-h-m-s'));
