@@ -212,3 +212,111 @@ function FormtDate(num, icon, backStyle) {
 }
 // var now = new Date();
 console.log(FormtDate('Mar 1, 2019 12:00:00 AM', '-', 'y-m-d-h-m-s'));
+
+// 桶排序 https://juejin.im/post/5d819a2ee51d45620064bc00?utm_source=gold_browser_extension
+let arr = [3, 8, 6, 1, 5, 7, 9, 2, 4];
+// let min = Math.min(...arr);
+// console.log(min);
+// let max = Math.max(...arr);
+// console.log(max);
+// let size = 3;
+// let count = Math.floor((max - min) / size) + 1;
+// let buckets = [];
+// for (let i = 0; i < count; i++) {
+//   buckets.push([]);
+// }
+// console.log(buckets);
+
+// for (let v of arr) {
+//   let num = Math.floor((v - min) / size);
+//   buckets[num].push(v);
+// }
+// console.log(buckets);
+// let result = [];
+// // for (bucket of buckets) {
+// // }
+// result.push(...insertionSort(buckets[1]));
+// console.log(result);
+// insertionSort函数返回一个数组 使用展开运算符将数组中的每一项取出
+// function insertionSort(array) {
+//   for (let i = 1; i < array.length; i++) {
+//     // let i = i;
+//     let target = array[i];
+//     while (i > 0 && array[i - 1] > target) {
+//       array[i] = array[i - 1];
+//       i--;
+//     }
+//     array[i] = target;
+//     console.log(target, i);
+//   }
+//   return array;
+// }
+function insertionSort(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    // 声明一个值保存当前位置的值
+    let curValue = arr[i];
+    // 用while不用if 因为while比if多执行一次
+    while (i > 0 && curValue < arr[i - 1]) {
+      // 如果第二个数字大于第一个数字 将第一个数字赋值给第二个数字 并且将i值减一
+      arr[i] = arr[i - 1];
+      i--;
+      console.log('if');
+    }
+    arr[i] = curValue;
+  }
+  return arr;
+}
+arr = insertionSort(arr);
+console.log(arr);
+
+// i=2时函数执行
+// arr = [5,6,4]
+// i = 2
+// arr[2] = 6
+// i-- (i=1)
+// arr = [5,6,6]
+
+// curValue = 4
+// i=1
+// arr[1] = 5
+// arr = [5,5,6]
+// i--(i=0)
+// arr[i] = 4
+// arr=[4,5,6]
+
+// --------------------------    
+
+// 深拷贝 赋值属性和方法 改变数值后不互相干扰
+// https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1?utm_source=gold_browser_extension
+function clone(target) {
+  debugger;
+  // debugger;
+  if (typeof target == 'object') {
+    let cloneTarget = Array.isArray(target) ? [] : {};
+    for (const key in target) {
+      cloneTarget[key] = clone(target[key]);
+    }
+    return cloneTarget;
+  } else {
+    return target;
+  }
+}
+const target = {
+  field1: 1,
+  field2: undefined,
+  field3: 'ConardLi',
+  field4: {
+    child: 'child',
+    child2: {
+      child2: 'child2'
+    }
+  },
+  filed4: [2, 4, 8]
+};
+let target2 = clone(target);
+console.log(clone(target));
+target.field2 = 'field2s';
+target.filed4[3] = 10;
+console.log(target2, target);
+
+// -----------------------------------------------
