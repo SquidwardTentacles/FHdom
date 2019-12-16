@@ -10,7 +10,7 @@
   <body>
     <canvas class="canvas" id="draw" width="200" height="200"></canvas>
     <img
-      src="../Snipaste_2019-10-24_15-36-57.png"
+      src="./Snipaste_2019-12-16_14-47-06.png"
       id="imageData"
       alt=""
       srcset=""
@@ -19,9 +19,9 @@
   <style></style>
   <script>
     $(document).ready(function() {
-      let drawing = document.getElementById('draw');
+      let drawing = document.getElementById("draw");
       if (drawing.getContext) {
-        let content = drawing.getContext('2d');
+        let content = drawing.getContext("2d");
         // // 获取图像的数据url
         // let imgURL = drawing.toDataURL('image/png');
         // // 显示图像
@@ -185,8 +185,8 @@
         // content.fillRect(30,30,50,50)
 
         $.ajax = {
-          url: 'http://192.168.1.4:3000/getIgmaData',
-          type: 'get',
+          url: "http://192.168.1.4:3000/getIgmaData",
+          type: "get",
           success: function(res) {
             console.log(res);
           },
@@ -204,6 +204,6 @@
         //   console.log(imageData);
         // };
       }
-    }
+    });
   </script>
 </html>
