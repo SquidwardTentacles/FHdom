@@ -1,44 +1,44 @@
 
 <template></template>
-<script>
-export default {
-data() {
+  <script>
+    export default {
+      data() {
 return {};
-},
+            },
 mounted() {},
 methods: {
-messageTip(type, mes) {
-this.$message({
-  type: type,
-  message: mes
-});
+      messageTip(type, mes) {
+      this.$message({
+        type: type,
+        message: mes
+      });
 },
 messageBox(mes) {
-this.$confirm(mes, "提示", {
-  confirmButtonText: "确定",
-  cancelButtonText: "取消"
-})
-  .then(() => {})
-  .catch(() => {});
+      this.$confirm(mes, "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消"
+      })
+        .then(() => { })
+        .catch(() => { });
 }
 }
 };
 </script>
-<style lang="scss">
+  <style lang="scss">
 
-</style>
+  </style>
 
-let statusId='';
-    for (let i = 0; i < this.tableData.length; i++) {
-      if (this.tableData[i].giveOutStatus == 0) {
-        statusId += this.tableData[i].equipmentAgentId + ",";
-      }
-    }
-    // 去掉最后一个逗号
-    statusId = statusId.substring(
-      0,
-      statusId.lastIndexOf(",")
-    );
+let statusId = '';
+for (let i = 0; i < this.tableData.length; i++) {
+  if (this.tableData[i].giveOutStatus == 0) {
+    statusId += this.tableData[i].equipmentAgentId + ",";
+  }
+}
+// 去掉最后一个逗号
+statusId = statusId.substring(
+  0,
+  statusId.lastIndexOf(",")
+);
 
 // 日期不能大于开始时间 不能大于今天 element ui 日期选择器日期范围限制
 // :picker-options="endTime"
@@ -73,7 +73,7 @@ import city from '../../../static/json/city';
  * 时间格式化
  */
 var newdate = Date;
-newdate.prototype.Format = function(fmt) {
+newdate.prototype.Format = function (fmt) {
   //author: meizz
   var o = {
     'M+': this.getMonth() + 1, //月份
@@ -97,7 +97,7 @@ newdate.prototype.Format = function(fmt) {
       );
   return fmt;
 };
-var initDate = function(date) {
+var initDate = function (date) {
   if (!date) {
     return (dateV = '');
   }
@@ -105,7 +105,7 @@ var initDate = function(date) {
   dateV = new Date(date).Format('yyyy-MM-dd');
   return dateV;
 };
-var initDateHm = function(date) {
+var initDateHm = function (date) {
   if (!date) {
     return (dateV = '');
   }
@@ -113,7 +113,7 @@ var initDateHm = function(date) {
   dateV = new Date(date).Format('yyyy-MM-dd HH:mm');
   return dateV;
 };
-var initDateHms = function(date) {
+var initDateHms = function (date) {
   if (!date) {
     return (dateV = '');
   }
@@ -155,7 +155,7 @@ Vue.prototype.regobj = regobj;
 
 
 // 删除字符串最后一个逗号
-function lastIndexOfComma(string) {
+function lastIndexOfComma (string) {
   if (string) {
     string =
       string.indexOf(',') === -1
@@ -166,7 +166,7 @@ function lastIndexOfComma(string) {
 }
 Vue.prototype.lastIndexOfComma = lastIndexOfComma;
 // 保留两位小数
-function toFixexFunc(string, toStr) {
+function toFixexFunc (string, toStr) {
   if (string || string === 0) {
     string = parseFloat(string).toFixed(2);
     // 如果传了toStr 则转为number
@@ -185,7 +185,7 @@ Vue.prototype.toFixexFunc = toFixexFunc;
 
 // 日期格式化（self）
 // 参数解析  num时间戳 icon年月日分割的字符 backStyle返回的时间格式、
-function FormtDate(num, icon, backStyle) {
+function FormtDate (num, icon, backStyle) {
   // console.log(now.getDate());
   var now = new Date(num);
   console.log(now);
@@ -251,7 +251,7 @@ let arr = [3, 8, 6, 1, 5, 7, 9, 2, 4];
 //   }
 //   return array;
 // }
-function insertionSort(arr) {
+function insertionSort (arr) {
   for (let i = 1; i < arr.length; i++) {
     // 声明一个值保存当前位置的值
     let curValue = arr[i];
@@ -288,7 +288,7 @@ console.log(arr);
 
 // 深拷贝 赋值属性和方法 改变数值后不互相干扰
 // https://juejin.im/post/5d6aa4f96fb9a06b112ad5b1?utm_source=gold_browser_extension
-function clone(target) {
+function clone (target) {
   debugger;
   // debugger;
   if (typeof target == 'object') {
@@ -320,3 +320,34 @@ target.filed4[3] = 10;
 console.log(target2, target);
 
 // -----------------------------------------------
+
+// 移动端自适应
+(function (doc, win) {
+  var docEl = win.document.documentElement;
+  var resizeEvt =
+    "orientationchange" in window ? "orientationchange" : "resize";
+  /**
+* ================================================
+*   设置根元素font-size
+* 当设备宽度为375(iPhone6)时，根元素font-size=16px; 
+× ================================================
+*/
+  var refreshRem = function () {
+    var clientWidth =
+      win.innerWidth ||
+      doc.documentElement.clientWidth ||
+      doc.body.clientWidth;
+    if (!clientWidth) return;
+    clientWidth = clientWidth > 600 ? 600 : clientWidth;
+    clientWidth = clientWidth < 300 ? 300 : clientWidth;
+    var fz;
+    var width = clientWidth;
+    fz = (16 * width) / 375;
+    docEl.style.fontSize = fz + "px";
+  };
+
+  if (!doc.addEventListener) return;
+  win.addEventListener(resizeEvt, refreshRem, false);
+  doc.addEventListener("DOMContentLoaded", refreshRem, false);
+  refreshRem();
+})(document, window);
