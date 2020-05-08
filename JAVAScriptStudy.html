@@ -15,6 +15,7 @@
       alt=""
       srcset=""
     />
+    <div id="multiplication"></div>
   </body>
   <style></style>
   <script>
@@ -265,13 +266,13 @@
     // obj.a = Symbol("foo");
     // console.log(obj.a);
 
-    let obj = {
-      name: "对象",
-      type: "1",
-    };
-    console.log(obj.type);
-    delete obj.type;
-    console.log(obj.type);
+    // let obj = {
+    //   name: "对象",
+    //   type: "1",
+    // };
+    // console.log(obj.type);
+    // delete obj.type;
+    // console.log(obj.type);
 
     // function CreateDog(name, color) {
     //   this.name = name;
@@ -307,17 +308,56 @@
     // console.log(group.arr2);
 
     // 结合使用构造函数和原型模式 单独使用原型模式会有弊端 但和其它模式组合起来 这些问题就迎刃而解了 典型的使用就是组合使用构造函数与原型模式 它是当前ECMAScript中认同度最高 使用最广泛地一种创建自定义类型的方法
-    function MyToy(owenr) {
-      this.owenr = owenr;
-      this.group = ["a", "b", "c"];
+    // function MyToy(owenr) {
+    //   this.owenr = owenr;
+    //   this.group = ["a", "b", "c"];
+    // }
+    // MyToy.prototype.sayOwer = function () {
+    //   console.log(this.owenr);
+    // };
+    // var lileis = new MyToy("lilei");
+    // var hanMeimeis = new MyToy("han Meimei");
+    // lileis.group.push("po");
+    // console.log("lilei", lileis.group);
+    // console.log("han", hanMeimeis.group);
+
+    let str = "";
+    function multiplication() {
+      for (let i = 1; i < 10; i++) {
+        let str1 = "";
+        for (let c = 1; c <= i; c++) {
+          let res = i * c;
+          str1 += `<li>${c} x ${i} = ${res}</li>`;
+        }
+        str1 = `<div>${str1}</div>`;
+        str += str1 + "<br/>";
+      }
+      let multiplicationE = document.getElementById("multiplication");
+      multiplicationE.innerHTML = str;
     }
-    MyToy.prototype.sayOwer = function () {
-      console.log(this.owenr);
-    };
-    var lileis = new MyToy("lilei");
-    var hanMeimeis = new MyToy("han Meimei");
-    lileis.group.push("po");
-    console.log("lilei", lileis.group);
-    console.log("han", hanMeimeis.group);
+    multiplication();
+
+    // for (var i = 1; i <= 9; i++) {
+    //   var myUl = document.createElement("ul");
+    //   for (var j = 1; j <= i; j++) {
+    //     var myLi = document.createElement("li");
+    //     var myText = document.createTextNode(j + " × " + i + " = " + i * j);
+    //     myLi.appendChild(myText);
+    //     myUl.appendChild(myLi);
+    //   }
+    //   document.getElementsByTagName("body")[0].appendChild(myUl);
+    // }
   </script>
 </html>
+<style>
+  #multiplication > div {
+    border: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  li {
+    padding-right: 15px;
+    list-style: none;
+  }
+</style>
