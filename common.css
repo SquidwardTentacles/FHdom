@@ -1,9 +1,15 @@
+body {
+  background: url("../src/assets/img/bgc.jpg") no-repeat center center;
+  background-size: cover;
+  max-width: 24rem;
+}
+
 body,
-html,
-#app {
+html {
   padding: 0;
   margin: 0;
-  height: 100%;
+  min-height: 100%;
+  font-size: 0.2rem;
 }
 .flexbox {
   display: flex;
@@ -27,6 +33,12 @@ html,
 }
 .flexbox.a-start {
   align-items: start;
+}
+.flexbox.direction {
+  flex-direction: column;
+}
+.flexbox.wrap {
+  flex-wrap: wrap;
 }
 a {
   text-decoration: none;
